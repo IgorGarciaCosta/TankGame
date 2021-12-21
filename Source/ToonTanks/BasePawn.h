@@ -18,6 +18,9 @@ public:
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "tank", meta = (AllowPrivateAccess = "true"))
+		float Speed;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "tank", meta = (AllowPrivateAccess = "true"))
 		class USceneComponent* RootSceneComponent;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "tank", meta = (AllowPrivateAccess = "true"))
 		class USceneComponent* ProjectileSpawnPoint;
