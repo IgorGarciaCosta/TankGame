@@ -21,6 +21,9 @@ ATank::ATank() {
 void ATank::Move(float Value)
 {
 	GEngine->AddOnScreenDebugMessage(0, 5.f, FColor::Green, FString::Printf(TEXT("Value: %f"), Value));
+	FVector DeltaLocation(0.f);
+	DeltaLocation.X = Value;
+	AddActorLocalOffset(DeltaLocation);
 }
 
 // Called to bind functionality to input
