@@ -5,6 +5,7 @@
 #include "Tank.h"
 #include "Camera/CameraComponent.h"
 #include "Engine.h"
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/SpringArmComponent.h"
 
 ATank::ATank() {
@@ -15,14 +16,24 @@ ATank::ATank() {
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(CameraBoom);
 
+	
 
 }
 
-void ATank::Move(float Value)
+void ATank::MoveForward(float Value)
 {
-	GEngine->AddOnScreenDebugMessage(0, 5.f, FColor::Green, FString::Printf(TEXT("Value: %f"), Value));
-	FVector DeltaLocation(0.f);
-	DeltaLocation.X = Value;
+	//GEngine->AddOnScreenDebugMessage(0, 5.f, FColor::Green, FString::Printf(TEXT("Value: %f"), Value));
+	FVector DeltaLocation = FVector::ZeroVector;
+	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+	DeltaLocation.X = Value*Speed*DeltaTime;
+	AddActorLocalOffset(DeltaLocation);
+}
+
+void ATank::MoveRight(float Value)
+{
+	FVector DeltaLocation = FVector::ZeroVector;
+	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+	DeltaLocation.Y = Value * Speed * DeltaTime;
 	AddActorLocalOffset(DeltaLocation);
 }
 
@@ -31,6 +42,6 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
-
+	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::MoveForward);
+	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ATank::MoveRight);
 }

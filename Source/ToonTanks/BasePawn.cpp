@@ -19,7 +19,7 @@ ABasePawn::ABasePawn()
 	//RootComponent = Capsule;
 	Capsule->SetupAttachment(RootSceneComponent);
 
-	Speed = 400.f;
+	
 
 	//create static mesh component
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Body"));
