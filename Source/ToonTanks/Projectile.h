@@ -27,4 +27,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Projectile")
 	UStaticMeshComponent* ProjectileMesh;
 
+	UPROPERTY(VisibleAnywhere, Category = "Projectile")
+	class UProjectileMovementComponent* ProjectileMovement;
+
 };
