@@ -17,6 +17,8 @@ public:
 protected:
 	UFUNCTION()
 		void RotateTurret(FVector LookAtTarget);
+	UFUNCTION()
+		void Fire();
 
 private:
 

@@ -19,10 +19,19 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "tower", meta = (AllowPrivateAccess = "true"))
 		float FireRange = 900.f;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 private:
 	class ATank* Tank;
+
+	FTimerHandle FireRateTimerHandle;
+
+	float FireRate = 2.f;
+
+	void CheckFireCondition();//to make sure the fire shoud be called
+
+	bool InFireRange();
 	
 };
