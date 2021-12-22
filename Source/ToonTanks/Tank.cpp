@@ -26,15 +26,15 @@ void ATank::MoveForward(float Value)
 	FVector DeltaLocation = FVector::ZeroVector;
 	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
 	DeltaLocation.X = Value*Speed*DeltaTime;
-	AddActorLocalOffset(DeltaLocation);
+	AddActorLocalOffset(DeltaLocation, true);
 }
 
 void ATank::MoveRight(float Value)
 {
-	FVector DeltaLocation = FVector::ZeroVector;
+	FRotator DeltaRotation = FRotator::ZeroRotator;
 	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
-	DeltaLocation.Y = Value * Speed * DeltaTime;
-	AddActorLocalOffset(DeltaLocation);
+	DeltaRotation.Yaw = Value* DeltaTime * TurnRate;
+	AddActorLocalRotation(DeltaRotation);
 }
 
 // Called to bind functionality to input

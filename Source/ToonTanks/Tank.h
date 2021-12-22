@@ -22,8 +22,10 @@ private:
 		class USpringArmComponent* CameraBoom;
 	UPROPERTY(VisibleAnywhere, Category = "tank", meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* Camera;
-	UPROPERTY(VisibleAnywhere, Category = "Movement", meta = (AllowPrivateAccess = "true"))
-		float Speed = 200.f;
+	UPROPERTY(EditAnywhere, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+		float Speed = 200.f;  
+	UPROPERTY(EditAnywhere, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float TurnRate = 45.f;
 	UFUNCTION()
 		void MoveForward(float Value);
 	UFUNCTION()
