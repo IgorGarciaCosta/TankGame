@@ -2,6 +2,7 @@
 
 
 #include "Projectile.h"
+#include "Engine.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
@@ -23,6 +24,7 @@ AProjectile::AProjectile()
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 	
 }
 
@@ -31,5 +33,12 @@ void AProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("HitComp: %s"), *HitComp->GetName()));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("OtherActor: %s"), *OtherActor->GetName()));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("OtehrhCOmp: %s"), *OtherComp->GetName()));
 }
 
