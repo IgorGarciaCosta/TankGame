@@ -24,5 +24,13 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+private:
+	UPROPERTY(EditAnywhere)
+		float MaxHealth = 100.f;
+	float Health = 0.f;
+
+
+	UFUNCTION()
+	void DamageTaken(AActor* DamageActor, float Damage, const UDamageType* DamageType, class AController* Instigator, AActor* DamageCause);
 		
 };

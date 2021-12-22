@@ -3,6 +3,7 @@
 
 #include "Projectile.h"
 #include "Engine.h"
+#include "GameFramework/DamageType.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
@@ -37,8 +38,15 @@ void AProjectile::Tick(float DeltaTime)
 
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("HitComp: %s"), *HitComp->GetName()));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("OtherActor: %s"), *OtherActor->GetName()));
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("OtehrhCOmp: %s"), *OtherComp->GetName()));
+	auto MyOwner = GetOwner();
+	if (MyOwner == nullptr) return;
+
+	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
+	auto DamageTypeClass = UDamageType::StaticClass();
+
+	if (OtherActor&&OtherActor!=this &&OtherActor!= MyOwner) {
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
+	}
+	
 }
 
