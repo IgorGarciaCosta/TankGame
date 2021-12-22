@@ -32,7 +32,8 @@ private:
 		UStaticMeshComponent* TurretMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "tank", meta = (AllowPrivateAccess = "true"))
 		class UCapsuleComponent* Capsule;
-
+	UPROPERTY(EditDefaultsOnly, Category = "projectile")
+	TSubclassOf<class AProjectile>ProjectileClass;
 
 
 
