@@ -35,4 +35,10 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	float Damage = 50.f;
+
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	class UParticleSystem* HitParticles;
+
+	UPROPERTY(VisibleAnywhere)
+	class UParticleSystemComponent* SmokeTrail;
 };
