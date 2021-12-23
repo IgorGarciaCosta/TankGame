@@ -16,6 +16,9 @@ class TOONTANKS_API AToonTanksGameMode : public AGameModeBase
 
 protected:
 	void BeginPlay() override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
 public:
 	void ActorDied(AActor* DeadActor);
 private:
