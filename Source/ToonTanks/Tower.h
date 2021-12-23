@@ -19,6 +19,8 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "tower", meta = (AllowPrivateAccess = "true"))
 		float FireRange = 900.f;
+
+	void HandleDestruction();
 	
 protected:
 	// Called when the game starts or when spawned
