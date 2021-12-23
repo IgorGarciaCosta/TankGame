@@ -41,4 +41,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	class UParticleSystemComponent* SmokeTrail;
+
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	class USoundBase* LaunchSound;
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+		class USoundBase* HitSound;
 };
