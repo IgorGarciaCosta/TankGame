@@ -5,6 +5,7 @@
 #include "Engine/Engine.h"
 #include "DrawDebugHelpers.h"
 #include "Projectile.h"
+#include "Camera/CameraShakeBase.h"
 #include "Components/CapsuleComponent.h"
 #include <Runtime/Engine/Classes/Kismet/GameplayStatics.h>
 
@@ -43,6 +44,9 @@ void ABasePawn::HandleDestruction()
 		if (DeathSound) {
 			UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
 
+		}
+		if (DeathCameraShakeClass) {
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathCameraShakeClass);
 		}
 	}
 }

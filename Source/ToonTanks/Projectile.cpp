@@ -4,6 +4,8 @@
 #include "Projectile.h"
 #include "Engine.h"
 #include "GameFramework/DamageType.h"
+#include "GameFramework/PlayerController.h"
+#include "Camera/CameraShakeBase.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
@@ -58,6 +60,10 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation());
 			if (HitSound) {
 				UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+			}
+			if (HitCameraShakeClass) {
+				GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
+				
 			}
 			
 		}
