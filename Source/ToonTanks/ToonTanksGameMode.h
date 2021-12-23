@@ -20,5 +20,7 @@ public:
 	void ActorDied(AActor* DeadActor);
 private:
 	class ATank* Tank;
+
+	class AToonTanksPlayerController* ToonTanksPlayerController;
 	
 };
