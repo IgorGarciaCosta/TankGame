@@ -16,7 +16,7 @@ class TOONTANKS_API ATank : public ABasePawn
 public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
+	bool bAlive = true;
 	void HandleDestruction();
 
 protected:
